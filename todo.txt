@@ -1,0 +1,19 @@
+- basic controls
+	+ movement
+	- shooting
+	- collision
+
+- player class
+	- health
+	- speed
+	- weapon
+
+- weapon class
+	- projectile
+	- damage
+	- speed
+
+- enemy tank class
+	- health
+	- speed
+	- weapon

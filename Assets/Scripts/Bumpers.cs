@@ -12,6 +12,12 @@ public class Bumpers : MonoBehaviour
         isTouching = true;
     }
 
+    private void OnCollisionStay(Collision collision)
+    {
+        Debug.Log("still touching");
+        isTouching = true;
+    }
+
     private void OnCollisionExit(Collision collision)
     {
         Debug.Log("clear");

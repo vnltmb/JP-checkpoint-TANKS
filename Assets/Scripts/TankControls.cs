@@ -6,18 +6,13 @@ public class TankControls : MonoBehaviour
 {
     [SerializeField] float speed = 5;
     [SerializeField] float horInput, vertInput;
-    private bool isTouching = false;
 
-    private Bumpers bumpersScript;
-    public GameObject frontBumper, rearBumper, leftBumper, rightBumper;
+    Rigidbody rb;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        bumpersScript = GetComponent<Bumpers>();
-        
+        rb = GetComponent<Rigidbody>();
     }
-
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -49,13 +44,9 @@ public class TankControls : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 90, 0);
         }
 
-        if (!isTouching)
-        {
-            // Sign() returns either 1 or -1, so you get the direction
-            transform.Translate(Vector3.forward * Mathf.Sign(vertInput) * speed * Time.deltaTime, Space.World);
-        }
-        else
-            Debug.Log("can't move");
+        // Sign() returns either 1 or -1, so you get the direction
+        rb.MovePosition(rb.transform.position + Vector3.forward * Mathf.Sign(vertInput) * speed * Time.deltaTime);
+      
     }
 
     private void HandleMovementHor(float horInput)
@@ -70,26 +61,9 @@ public class TankControls : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
 
-        if (!isTouching)
-        {
-            // Sign() returns either 1 or -1, so you get the direction
-            transform.Translate(Vector3.right * Mathf.Sign(horInput) * speed * Time.deltaTime, Space.World);
-        }
-        else
-            Debug.Log("can't move");
+        // Sign() returns either 1 or -1, so you get the direction
+        rb.MovePosition(rb.transform.position + Vector3.right * Mathf.Sign(horInput) * speed * Time.deltaTime);
+                
     }
 
-    
-    private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("hit something");
-        isTouching = true;
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        Debug.Log("no obstacle ahead");
-        isTouching = false;
-    }
-    
 }

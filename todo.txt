@@ -1,7 +1,7 @@
 - basic controls
 	+ movement
 	- shooting
-	- collision
+	+ collision
 
 - player class
 	- health

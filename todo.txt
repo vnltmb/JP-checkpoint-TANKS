@@ -1,6 +1,6 @@
-- basic controls
++ basic controls
 	+ movement
-	- shooting
+	+ shooting
 	+ collision
 
 - player class

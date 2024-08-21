@@ -9,11 +9,36 @@ public class TankControls : MonoBehaviour
 
     Rigidbody rb;
 
+    public Transform origin;
+    public Projectiles projectile;
+
+    private float prevFireTime;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        // so I don't have to wait at the start of the game
+        prevFireTime = -projectile.delay;
     }
     // Update is called once per frame
+    private void Update()
+    {
+        float curTime = Time.time;
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            // check, if you can fire next shot
+            if (curTime - prevFireTime > projectile.delay)
+            {
+                projectile.SpawnProj();
+                prevFireTime = curTime;
+            }
+            else
+                print("reloading");
+        }
+            
+    }
+
     void FixedUpdate()
     {
         vertInput = Input.GetAxis("Vertical");

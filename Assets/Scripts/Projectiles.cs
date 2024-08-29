@@ -12,16 +12,19 @@ public class Projectiles : MonoBehaviour
 
     private void Start()
     {
+        /*
         // find the origin transform
         origin = GameObject.Find("origin").GetComponent<Transform>();
         // set the position and rotation of the projectile, so it knows where to spawn
         transform.position = origin.position;
         transform.rotation = origin.rotation;
-
+        */
     }
 
-    public void SpawnProj()
+    public void SpawnProj(Transform origin)
     {
+        transform.position = origin.position;
+        transform.rotation = origin.rotation;
         Instantiate(gameObject);
     }
 
@@ -39,7 +42,7 @@ public class Projectiles : MonoBehaviour
             print("destroyed enemy tank");
         }
         */
-        print("destroyed");
+        //print("destroyed");
         Destroy(gameObject);
     }
 }

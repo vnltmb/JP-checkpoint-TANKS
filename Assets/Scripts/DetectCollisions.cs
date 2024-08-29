@@ -9,7 +9,12 @@ public class DetectCollisions : MonoBehaviour
         // delete self after colliding with projectile
         if (collision.collider.gameObject.CompareTag("Projectiles"))
         {
-            print("collided with projectiles");
+            //print("collided with a projectile");
+            if (gameObject.CompareTag("Enemy"))
+            {
+                TankManager.tanksActive--;
+                print("enemy destroyed");
+            }
             Destroy(gameObject);
         }
     }
